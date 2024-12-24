@@ -9,7 +9,7 @@ VHDL_MAIN = projectname.MyTopLevelVhdl
 SIM_MAIN = projectname.MyTopLevelSim
 
 # Define targets  
-.PHONY: all verilog vhdl sim clean  
+.PHONY: all verilog vhdl sim clean  wave
 
 all: verilog 
 
@@ -25,8 +25,10 @@ vhdl:
 sim:  
 	$(SBT) "runMain $(SIM_MAIN)"  
 
-# Command to clean the project  
+wave:
+	gtkwave "./simWorkspace/Adder4Bit/test/wave.vcd"
 
+# Command to clean the project  
 clean:
 ifeq ($(OS),Windows_NT)	
 	@if exist verdiLog rmdir /s /q verdiLog
